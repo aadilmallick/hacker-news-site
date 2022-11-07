@@ -4,6 +4,8 @@ import {
   REMOVE_STORY,
   HANDLE_PAGE,
   HANDLE_SEARCH,
+  HANDLE_POPULAR,
+  HANDLE_PAGE_ZERO,
 } from "./actions";
 
 const reducer = (state, action) => {
@@ -28,6 +30,11 @@ const reducer = (state, action) => {
     case HANDLE_PAGE:
       const value = action.payload.value === "previous" ? -1 : 1;
       return { ...state, page: state.page + value };
+    case HANDLE_POPULAR:
+      console.log(action.payload);
+      return { ...state, seeingFrontPage: action.payload };
+    case HANDLE_PAGE_ZERO:
+      return { ...state, page: 0 };
     default:
       throw new Error(`No matchign action type ${action.type}`);
   }
